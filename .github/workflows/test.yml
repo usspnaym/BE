@@ -1,0 +1,14 @@
+name: Test
+
+on: [push]
+
+jobs:
+  unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          cp .env.example .env
+          composer install
+          php artisan key:generate
+          php artisan migrate --seed
+          vendor/bin/phpunit
