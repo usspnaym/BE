@@ -1,7 +1,7 @@
 @servers(['web' => 'deployer@t22.tfcis.org'])
 
 @setup
-    $repository = 'ssh://git@github.com/usspnaym/BE.git';
+    $repository = 'https://github.com/usspnaym/BE.git';
     $app_dir = '/var/www/laravel-envoy';
     $releases_dir = '/var/www/SDGs/releases';
     $release = date('YmdHis');
