@@ -36,7 +36,13 @@ class FormatResponse {
         ];
     }
 
-    public static function success(){
+    public static function success($details=[]){
+        if(isset($details)){
+            return [
+                'status' => 'success',
+                'details' => $details
+            ];
+        }
         return [
             'status' => 'success'
         ];
