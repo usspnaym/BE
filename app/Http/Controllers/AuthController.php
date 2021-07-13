@@ -76,7 +76,7 @@ class AuthController extends Controller
     */
 
     public function me(Request $request) {
-        $user = $request->user();
+        $user = Auth::guard('sanctum')->user();
         return $user;
     }
 }
