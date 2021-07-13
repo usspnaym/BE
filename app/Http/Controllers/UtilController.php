@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\FormatResponse;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class UtilController extends Controller
 {
@@ -26,5 +27,9 @@ class UtilController extends Controller
             'name' => $name,
             'path' => $path
         ]));
+    }
+
+    public function QRCode(Request $request){
+        return QrCode::format('png')->size(100)->generate($request->input('url'));
     }
 }
