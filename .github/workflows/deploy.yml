@@ -26,7 +26,7 @@ jobs:
           ssh-keyscan t22.tfcis.org >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
           cat ~/.ssh/known_hosts
-          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n\n" > ~/.ssh/config
+          echo "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n\n" > ~/.ssh/config
           cat ~/.ssh/config
           ~/.composer/vendor/bin/envoy run deploy
 
