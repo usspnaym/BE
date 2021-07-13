@@ -9,6 +9,7 @@
     pull_repository
     run_composer
     run_npm
+    migration
     optimize
     update_permissions
 @endstory
@@ -29,6 +30,10 @@
     cd {{ $app_dir }}
     npm install
     npm run production
+@endtask
+
+@task('migration')
+    php artisan migrate --seed
 @endtask
 
 @task('update_permissions')
