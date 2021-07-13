@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use ErrorResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,22 +37,12 @@ class AuthController extends Controller
             Auth::attempt($request->only('email', 'password')) ||
             Auth::attempt($request->only('account', 'password'))
         )) {
-            return response()->json([
-                'status' => 'error',
-                'error' => [
-                    'code' => 401,
-                    'message' => 'Invalid authentication credentials.',
-                    'localizedMessage' => '帳號資訊錯誤。',
-                    'status' => 'UNAUTHENTICATED',
-                    'details' => []
-                ]
-            ],401);
+            return response()->json(ErrorResponse::error(403,'credentials'));
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token');
-        event(new PersonalAccessTokenCreated($token));
         return response()->json([
             'access_token' => $token->plainTextToken,
             'token_type' => 'Bearer',
