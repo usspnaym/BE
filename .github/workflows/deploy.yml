@@ -23,6 +23,7 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan t22.tfcis.org >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+          cat ~/.ssh/known_hosts
           # echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n\n" > ~/.ssh/config
           eval `ssh-agent -s`
           echo "$PRIV" | ssh-add -
