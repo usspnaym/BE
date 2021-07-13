@@ -21,12 +21,13 @@ jobs:
         run: |
           composer global require "laravel/envoy=~1.0"
           mkdir -p ~/.ssh
-          # echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n\n" > ~/.ssh/config
           eval `ssh-agent -s`
           echo "$PRIV" | ssh-add -
           ssh-keyscan t22.tfcis.org >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
           cat ~/.ssh/known_hosts
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n\n" > ~/.ssh/config
+          cat ~/.ssh/config
           ~/.composer/vendor/bin/envoy run deploy
 
         env:
