@@ -19,5 +19,6 @@ jobs:
 
       - name: Deploy
         run: |
+          ssh-keyscan t22.tfcis.org
           composer global require "laravel/envoy=~1.0"
           ~/.composer/vendor/bin/envoy run deploy
