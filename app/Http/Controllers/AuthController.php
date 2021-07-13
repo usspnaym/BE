@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use ErrorResponse;
+use App\Helpers\FormatResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,11 +25,7 @@ class AuthController extends Controller
             'password' => Hash::make($validator['password']),
         ]);
 
-        $token = $user->createToken('auth_token');
-        return response()->json([
-            'access_token' => $token->plainTextToken,
-            'token_type' => 'Bearer',
-        ]);
+        return response()->json($user);
     }
 
     public function login(Request $request) {
@@ -37,7 +33,7 @@ class AuthController extends Controller
             Auth::attempt($request->only('email', 'password')) ||
             Auth::attempt($request->only('account', 'password'))
         )) {
-            return response()->json(ErrorResponse::error(403,'credentials'));
+            return response()->json(FormatResponse::error(403,'credentials'));
         }
 
         $user = User::where('email', $request['email'])->orWhere('account', $request['account'])->first();
@@ -49,6 +45,7 @@ class AuthController extends Controller
         ]);
     }
 
+    /*
     public function change_password(Request $request) {
         $validator =  $request->validate([
             'new_password' => 'required|string|min:8',
@@ -76,12 +73,10 @@ class AuthController extends Controller
             'status'=>'success'
         ]);
     }
+    */
 
     public function me(Request $request) {
         $user = $request->user();
-        $user->role = $user->getRoleNames();
-        $user->permissions = $user->permission;
-        $user->stores = $user->stores()->get();
         return $user;
     }
 }
