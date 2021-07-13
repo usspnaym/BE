@@ -13,6 +13,8 @@ class CreatePostTable extends Migration
             $table->string('name');
             $table->bigInteger('user_id');
             $table->longText('content');
+            $table->double('lat',17,15)->nullable();
+            $table->double('lng',17,14)->nullable();
             $table->timestamps();
         });
     }

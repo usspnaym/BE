@@ -4,17 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Malhal\Geographical\Geographical;
 
 class Post extends Model
 {
-    use HasFactory;
-
+    use HasFactory, Geographical;
+    const LATITUDE  = 'lat';
+    const LONGITUDE = 'lng';
     protected $fillable = [
         'id',
         'user_id',
         'category_id',
         'name',
-        'content'
+        'content',
+        'lat',
+        'lng'
     ];
 
     public function user(){
