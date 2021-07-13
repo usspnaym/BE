@@ -10,7 +10,7 @@ class CreateCategoryTable extends Migration
     {
         Schema::create('categorys', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('name');
         });
     }
 

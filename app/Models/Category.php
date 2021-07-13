@@ -10,7 +10,8 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id'
+        'id',
+        'name'
     ];
 
     public function posts(){
