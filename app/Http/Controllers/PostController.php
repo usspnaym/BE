@@ -22,6 +22,11 @@ class PostController extends Controller
 
         $user = Auth::guard('sanctum')->user();
         $post = $user->posts()->create($request->all());
+
+        if($request->input('categories') != null){
+            $post->categories()->attach($request->input('categories'));
+        }
+
         return $post;
     }
 
@@ -36,6 +41,13 @@ class PostController extends Controller
             return response()->json(FormatResponse::error(403, 'login'));
         } else if(!Auth::guard('sanctum')->user()->posts->contains($post)){
             return response()->json(FormatResponse::error(403, 'permission'));
+        }
+
+        if($request->input('categories') != null){
+            foreach ($post->categories as $cat) {
+                $post->categories()->detach($cat->id);
+            }
+            $post->categories()->attach($request->input('categories'));
         }
 
         $post->update($request->all());

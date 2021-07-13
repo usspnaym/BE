@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return Category::with('post.name')->get();
+        return Category::with('posts.name')->get();
     }
 
     public function store(Request $request)
