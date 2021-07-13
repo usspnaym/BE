@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -31,7 +32,10 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (!(
+            Auth::attempt($request->only('email', 'password')) ||
+            Auth::attempt($request->only('account', 'password'))
+        )) {
             return response()->json([
                 'status' => 'error',
                 'error' => [
