@@ -33,6 +33,7 @@
 @endtask
 
 @task('migration')
+    cd {{ $app_dir }}
     php artisan migrate --seed
 @endtask
 
