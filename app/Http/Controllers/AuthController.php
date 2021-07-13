@@ -40,7 +40,7 @@ class AuthController extends Controller
             return response()->json(ErrorResponse::error(403,'credentials'));
         }
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        $user = User::where('email', $request['email'])->orWhere('account', $request['account'])->first();
 
         $token = $user->createToken('auth_token');
         return response()->json([
@@ -48,6 +48,7 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
+
     public function change_password(Request $request) {
         $validator =  $request->validate([
             'new_password' => 'required|string|min:8',
