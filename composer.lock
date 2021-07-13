@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7759431e303e2d722a264a8a991a9e84",
+    "content-hash": "dc7428204ab99b5f42ddcb42e2054280",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5342,6 +5342,80 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "hsuan/laravel-relation-maker",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hsuan1117/laravel-relation-maker.git",
+                "reference": "da91618b1771020a86663a5c09de2f1ff1a17ab8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hsuan1117/laravel-relation-maker/zipball/da91618b1771020a86663a5c09de2f1ff1a17ab8",
+                "reference": "da91618b1771020a86663a5c09de2f1ff1a17ab8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.37",
+                "php": ">=7.4",
+                "spatie/laravel-package-tools": "^1.4.3"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.2",
+                "nunomaduro/collision": "^5.3",
+                "orchestra/testbench": "^6.15",
+                "phpunit/phpunit": "^9.3",
+                "spatie/laravel-ray": "^1.9",
+                "vimeo/psalm": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hsuan\\LaravelRelationMaker\\LaravelRelationMakerServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelRelationMaker": "Hsuan\\LaravelRelationMaker\\LaravelRelationMakerFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hsuan\\LaravelRelationMaker\\": "src",
+                    "Hsuan\\LaravelRelationMaker\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hsuan",
+                    "email": "hsuan@hsuan.app",
+                    "role": "Developer"
+                }
+            ],
+            "description": "LaravelRelationMaker to help people generate model with relation",
+            "homepage": "https://github.com/hsuan/laravel-relation-maker",
+            "keywords": [
+                "hsuan",
+                "laravel",
+                "laravel-relation-maker"
+            ],
+            "support": {
+                "issues": "https://github.com/hsuan1117/laravel-relation-maker/issues",
+                "source": "https://github.com/hsuan1117/laravel-relation-maker/tree/v0.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/hsuan",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-13T02:29:48+00:00"
+        },
+        {
             "name": "laravel/sail",
             "version": "v1.8.4",
             "source": {
@@ -7339,6 +7413,66 @@
                 }
             ],
             "time": "2020-09-28T06:39:44+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "cf4c4cec220575e2864c6082842d76822421f1b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/cf4c4cec220575e2864c6082842d76822421f1b1",
+                "reference": "cf4c4cec220575e2864c6082842d76822421f1b1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0",
+                "mockery/mockery": "^1.4",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.3",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src",
+                    "Spatie\\LaravelPackageTools\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.9.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-05-23T15:12:33+00:00"
         },
         {
             "name": "theseer/tokenizer",

@@ -19,6 +19,7 @@ jobs:
 
       - name: Deploy
         run: |
+          mkdir -p ~/.ssh
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           composer global require "laravel/envoy=~1.0"
           ~/.composer/vendor/bin/envoy run deploy
