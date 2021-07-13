@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\FormatResponse;
 use App\Models\Image;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Response;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class UtilController extends Controller
