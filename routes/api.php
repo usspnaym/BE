@@ -22,3 +22,6 @@ Route::post('/auth/login',[\App\Http\Controllers\AuthController::class, 'login']
 Route::middleware(['auth:sanctum'])->get('/auth/me',[\App\Http\Controllers\AuthController::class, 'me']);
 
 Route::apiResource('posts', \App\Http\Controllers\PostController::class);
+Route::apiResource('categories', \App\Http\Controllers\CategoryController::class, [
+    'only' => ['index', 'show', 'store', 'update']
+]);

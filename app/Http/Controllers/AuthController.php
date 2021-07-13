@@ -33,7 +33,7 @@ class AuthController extends Controller
             Auth::attempt($request->only('email', 'password')) ||
             Auth::attempt($request->only('account', 'password'))
         )) {
-            return response()->json(FormatResponse::error(403,'credentials'). 403);
+            return response()->json(FormatResponse::error(403,'credentials'), 403);
         }
 
         $user = User::where('email', $request['email'])->orWhere('account', $request['account'])->first();
