@@ -6,7 +6,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/usspnaym/be/env:latest
+      image: docker.pkg.github.com/usspnaym/be/env:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
