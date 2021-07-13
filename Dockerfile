@@ -16,6 +16,3 @@ RUN docker-php-ext-install pdo_mysql zip
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-
-# Install Laravel Envoy
-RUN composer global require "laravel/envoy=~1.0"
