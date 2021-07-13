@@ -19,7 +19,11 @@ jobs:
 
       - name: Deploy
         run: |
+          composer global require "laravel/envoy=~1.0"
           mkdir -p ~/.ssh
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          composer global require "laravel/envoy=~1.0"
+          echo "$PRIV" | ssh-add -
           ~/.composer/vendor/bin/envoy run deploy
+
+        env:
+          PRIV: ${{ secrets.SSH_PRIVATE_KEY }}
