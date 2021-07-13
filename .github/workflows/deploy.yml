@@ -20,6 +20,7 @@ jobs:
       - name: Deploy
         run: |
           composer global require "laravel/envoy=~1.0"
+          whoami
           mkdir -p ~/.ssh
           eval `ssh-agent -s`
           echo "$PRIV" | ssh-add -
