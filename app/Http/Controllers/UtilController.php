@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\FormatResponse;
 use App\Models\Image;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class UtilController extends Controller
