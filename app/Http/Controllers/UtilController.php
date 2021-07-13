@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\FormatResponse;
 use App\Models\Image;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -30,6 +31,8 @@ class UtilController extends Controller
     }
 
     public function QRCode(Request $request){
-        return QrCode::format('png')->size(100)->generate($request->input('url'));
+        $response = Response::make(QrCode::format('png')->size(100)->generate($request->input('url')), 200);
+        $response->header('Content-Type', 'image/png');
+        return $response;
     }
 }
