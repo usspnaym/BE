@@ -2,46 +2,40 @@
 
 @setup
     $repository = 'https://github.com/usspnaym/BE.git';
-    $app_dir = '/var/www/laravel-envoy';
-    $releases_dir = '/var/www/SDGs/releases';
-    $release = date('YmdHis');
-    $new_release_dir = $releases_dir.'/'.$release;
+    $app_dir = '/var/www/SDGs';
 @endsetup
 
 @story('deploy')
-    clone_repository
+    pull_repository
     run_composer
-    update_symlinks
+    run_npm
+    optimize
     update_permissions
 @endstory
 
-@task('clone_repository')
+@task('pull_repository')
     echo 'Cloning repository...'
-    [ -d {{ $releases_dir }} ] || mkdir {{ $releases_dir }}
-    git clone --depth 1 {{ $repository }} {{ $new_release_dir }}
+    cd {{ $app_dir }}
+    git pull
 @endtask
 
 @task('run_composer')
     echo 'Starting deployment ({{ $release }})...'
-    cd {{ $new_release_dir }}
+    cd {{ $app_dir }}
     composer install --prefer-dist --no-dev  --no-scripts --no-suggest --optimize-autoloader
 @endtask
 
-@task('update_symlinks')
-    echo 'Linking storage directory...'
-    rm -rf {{ $new_release_dir }}/storage
-    ln -nfs {{ $app_dir }}/storage storage.tmp
-    mv -fT storage.tmp {{ $new_release_dir }}/storage
-
-    echo 'Linking .env file...'
-    ln -nfs {{ $app_dir }}/.env .env.tmp
-    mv -fT .env.tmp {{ $new_release_dir }}/.env
-
-    echo 'Linking current release...'
-    ln -nfs {{ $new_release_dir }} current.tmp
-    mv -fT current.tmp {{ $app_dir }}/current
+@task('run_npm')
+    cd {{ $app_dir }}
+    npm install
+    npm run production
 @endtask
 
 @task('update_permissions')
-    sudo setfacl -R -m u:www-data:rwx {{ $new_release_dir }}/storage {{ $new_release_dir }}/bootstrap/cache
+    sudo setfacl -R -m u:www-data:rwx {{ $app_dir }}/storage {{ $app_dir }}/bootstrap/cache
+@endtask
+
+@task('optimize')
+    cd {{ $app_dir }}
+    php artisan optimize
 @endtask
