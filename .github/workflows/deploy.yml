@@ -13,12 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Deploy
-        run: |
-          which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
-          eval $(ssh-agent -s)
-          echo "$SSH_PRIVATE_KEY"
-          echo "$SSH_PRIVATE_KEY" | ssh-add -
-          mkdir -p ~/.ssh
-          [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          ~/.composer/vendor/bin/envoy run deploy
+        run: ~/.composer/vendor/bin/envoy run deploy
