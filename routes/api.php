@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/auth/register',[\App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/auth/login',[\App\Http\Controllers\AuthController::class, 'login']);
 Route::middleware(['auth:sanctum'])->get('/auth/me',[\App\Http\Controllers\AuthController::class, 'me']);
+
+Route::apiResource('posts', \App\Http\Controllers\PostController::class);

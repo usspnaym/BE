@@ -5,17 +5,25 @@ namespace App\Helpers;
 class FormatResponse {
     const errors = [
         403 => [
-            'status' => 'UNAUTHENTICATED',
+            'status' => 'UNAUTHORIZED',
             'customs' => [
                 'credentials' => [
                     'Invalid authentication credentials.',
                     '帳號資訊錯誤。'
+                ],
+                'login' => [
+                    'Unauthenticated.',
+                    '尚未登入'
+                ],
+                'permission' => [
+                    'Permission Denied',
+                    '權限不足'
                 ]
             ]
         ]
     ];
 
-    public static function error($error_code, $error_custom_type){
+    public static function error($error_code, $error_custom_type = ''){
         return [
             'status' => 'error',
             'error' => [

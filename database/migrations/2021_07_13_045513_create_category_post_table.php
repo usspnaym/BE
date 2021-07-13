@@ -12,7 +12,6 @@ class CreateCategoryPostTable extends Migration
             $table->id();
             $table->bigInteger('category_id');
             $table->bigInteger('post_id');
-
         });
     }
 
