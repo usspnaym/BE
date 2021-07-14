@@ -13,6 +13,7 @@ class CreateImageTable extends Migration
             $table->bigInteger('user_id');
             $table->string('name');
             $table->string('path');
+            $table->timestamps();
         });
     }
 
