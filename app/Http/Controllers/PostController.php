@@ -6,6 +6,7 @@ use App\Helpers\FormatResponse;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -22,8 +23,8 @@ class PostController extends Controller
 
         $request->validate([
             'image.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'name' => 'required',
         ]);
-
         $user = Auth::guard('sanctum')->user();
         $post = $user->posts()->create($request->all());
 
@@ -36,7 +37,7 @@ class PostController extends Controller
                 $name = $file->getClientOriginalName();
                 $path = $file->storeAs(
                     'uploads',
-                    $request->user()->id . '_' . $name
+                    $user->id . '_' . $name
                 );
                 $post->images()->create([
                     'name' => $name,
