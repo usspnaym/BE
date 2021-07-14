@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -37,7 +38,7 @@ class PostController extends Controller
                 $name = $file->getClientOriginalName();
                 $path = $file->storeAs(
                     'uploads',
-                    $user->id . '_' . $name
+                    $user->id . '_' . $name . '_' . Str::random(4)
                 );
                 $post->images()->create([
                     'name' => $name,
