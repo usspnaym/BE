@@ -39,10 +39,10 @@ class DatabaseSeeder extends Seeder
         ]);
         Post::create([
             'user_id' => 1,
-            'name' => '測試回報',
-            'content' => '測試',
-            'lat' => 23,
-            'lng' => 120
+            'name' => '石虎保育員',
+            'content' => '參與石虎保育，對於台灣生態系做出實質貢獻',
+            'lat' => 23.8815603,
+            'lng' => 120.7640027
         ]);
     }
 }
