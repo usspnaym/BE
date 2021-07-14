@@ -40,7 +40,9 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'user_id' => 1,
             'name' => '測試回報',
-            'content' => '測試'
+            'content' => '測試',
+            'lat' => 23,
+            'lng' => 120
         ]);
     }
 }
