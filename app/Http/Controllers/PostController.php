@@ -11,9 +11,15 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Post::with(['images','user'])->get();
+        if($request->input('lat') != null && $request->input('lng') != null){
+            $query = Post::distance($request->input('lat'), $request->input('lng'));
+            $all = $query->orderBy('distance', 'ASC')->get();
+            return $all->load(['images','user']);
+        } else {
+            return Post::with(['images','user'])->get();
+        }
     }
 
     public function store(Request $request)

@@ -11,6 +11,7 @@ class Post extends Model
     use HasFactory, Geographical;
     const LATITUDE  = 'lat';
     const LONGITUDE = 'lng';
+    protected static $kilometers = true;
     protected $fillable = [
         'id',
         'user_id',
