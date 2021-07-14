@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "malhal/laravel-geographical": "^1.0",
+        "rap2hpoutre/laravel-log-viewer": "^1.7",
         "simplesoftwareio/simple-qrcode": "~4"
     },
     "require-dev": {

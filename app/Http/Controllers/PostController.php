@@ -26,6 +26,7 @@ class PostController extends Controller
             'image.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'name' => 'required',
         ]);
+        Log::debug($request);
         $user = Auth::guard('sanctum')->user();
         $post = $user->posts()->create($request->all());
 
@@ -53,7 +54,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return $post->load(['images','user']);
+        return $post->load(['images','user','categories']);
     }
 
     public function update(Request $request, Post $post)
