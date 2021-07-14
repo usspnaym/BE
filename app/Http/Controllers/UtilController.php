@@ -31,7 +31,7 @@ class UtilController extends Controller
     }
 
     public function QRCode(Request $request){
-        $response = Response::make(QrCode::format('png')->size(100)->generate($request->input('url')), 200);
+        $response = Response::make(QrCode::format('png')->size($request->input('size')??100)->generate($request->input('url')), 200);
         $response->header('Content-Type', 'image/png');
         return $response;
     }
