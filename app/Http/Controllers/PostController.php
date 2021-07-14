@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return Post::all();
+        return Post::with(['images','user'])->get();
     }
 
     public function store(Request $request)
@@ -20,6 +20,10 @@ class PostController extends Controller
             return response()->json(FormatResponse::error(403, 'login'));
         }
 
+        $request->validate([
+            'image.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
         $user = Auth::guard('sanctum')->user();
         $post = $user->posts()->create($request->all());
 
@@ -27,12 +31,27 @@ class PostController extends Controller
             $post->categories()->attach($request->input('categories'));
         }
 
+        if($request->hasfile('image')){
+            foreach($request->file('image') as $file) {
+                $name = $file->getClientOriginalName();
+                $path = $file->storeAs(
+                    'uploads',
+                    $request->user()->id . '_' . $name
+                );
+                $post->images()->create([
+                    'name' => $name,
+                    'path' => $path
+                ]);
+            }
+        }
+        $post->save();
+
         return $post;
     }
 
     public function show(Post $post)
     {
-        return $post;
+        return $post::with(['images','user'])->get();
     }
 
     public function update(Request $request, Post $post)

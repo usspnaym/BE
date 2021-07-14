@@ -10,7 +10,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class UtilController extends Controller
 {
-    public function upload_image(Request $request)
+    /*public function upload_image(Request $request)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
@@ -28,7 +28,7 @@ class UtilController extends Controller
             'name' => $name,
             'path' => $path
         ]));
-    }
+    }*/
 
     public function QRCode(Request $request){
         $response = Response::make(QrCode::format('png')->size($request->input('size')??100)->generate($request->input('url')), 200);

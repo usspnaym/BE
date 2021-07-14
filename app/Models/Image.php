@@ -12,10 +12,12 @@ class Image extends Model
     protected $fillable = [
         'id',
         'name',
+        'post_id',
         'path'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function post(){
+        return $this->belongsTo(Post::class);
     }
+
 }
