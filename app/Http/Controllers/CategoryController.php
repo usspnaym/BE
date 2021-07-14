@@ -26,7 +26,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return $category;
+        return $category->load('posts');
     }
 
     public function update(Request $request, Category $category)

@@ -53,7 +53,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return $post::with(['images','user'])->get();
+        return $post->load(['images','user']);
     }
 
     public function update(Request $request, Post $post)
